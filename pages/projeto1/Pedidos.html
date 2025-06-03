@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeto: Processamento de Pedidos</title>
+  <link rel="stylesheet" href="stylesPedido.css" />
+</head>
+<body class="dark-mode">
+  <header>
+    <button id="toggle-dark" style="background:none; border:none; color:white; cursor:pointer;">
+      ☀️ Modo Claro
+    </button>
+    <div>
+      <h1>MykAI</h1>
+    </div>
+    <nav>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <div id="contrucao">
+    <p>⚠️<strong>Aviso:</strong> Este site está em construção.</p>
+  </div>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>💼 Projeto: Processamento de Pedidos com Validação e Integração</h1>
+      <p>Automatize a gestão de pedidos com IA, RPA e integrações inteligentes.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="section">
+      <h2>🧩 O que este projeto faz?</h2>
+      <ul class="steps">
+        <li>1. Lê e-mails com anexos (PDF/Excel)</li>
+        <li>2. Extrai dados de cliente, itens e valores</li>
+        <li>3. Valida os dados com base existente</li>
+        <li>4. Registra o pedido em planilha</li>
+        <li>5. Envia resposta automática (aceito/rejeitado)</li>
+        <li>6. (Opcional) Integra com sistema web via RPA</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>🛠 Tecnologias Aplicadas</h2>
+      <div class="tab-bar">
+        <button class="tab-button active" onclick="showTab('power')">Power Automate</button>
+        <button class="tab-button" onclick="showTab('blueprism')">Blue Prism</button>
+        <button class="tab-button" onclick="showTab('python')">Python</button>
+      </div>
+
+      <div id="power" class="tab-content active">
+        <h3>Power Automate</h3>
+        <p>Fluxos na nuvem, integração com Outlook, Excel e respostas automáticas.</p>
+      </div>
+
+      <div id="blueprism" class="tab-content">
+        <h3>Blue Prism</h3>
+        <p>Extração com Decipher, tratamento e inserção em sistemas legados.</p>
+      </div>
+
+      <div id="python" class="tab-content">
+        <h3>Python</h3>
+        <p>Processamento completo com imaplib, pandas, PyPDF, openpyxl, e-mails e Selenium.</p>
+      </div>
+    </section>
+  </div>
+
+  <section id="contato" class="contato">
+    <h3 class="section-title">📱 Me encontre nas redes</h3>
+    <div class="redes-sociais">
+      <a href="https://www.instagram.com/mykai.py?igsh=bzk5Z2Zod2dlZndv" target="_blank" title="Instagram">
+        <img src="img/instagram.svg" alt="Instagram" />
+      </a>
+      <a href="https://www.linkedin.com/in/milainy-karen-b69265163/" target="_blank" title="LinkedIn">
+        <img src="img/linkedin.svg" alt="LinkedIn" />
+      </a>
+      <a href="mailto:mykai.py@gmail.com" title="Email">
+        <img src="img/email.svg" alt="Email" />
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 MykAI — Criado com 💜 e automações inteligentes
+  </footer>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    const themeBtn = document.getElementById('toggle-dark');
+    const body = document.body;
+
+    function updateTheme() {
+      const isLight = body.classList.toggle('light-mode');
+      themeBtn.textContent = isLight ? '🌙 Modo Escuro' : '☀️ Modo Claro';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    themeBtn.addEventListener('click', updateTheme);
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      body.classList.add('light-mode');
+      themeBtn.textContent = '🌙 Modo Escuro';
+    } else {
+      themeBtn.textContent = '☀️ Modo Claro';
+    }
+  </script>
+</body>
+</html>

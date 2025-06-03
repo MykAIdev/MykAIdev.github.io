@@ -115,6 +115,10 @@ body {
       font-size: 2rem;
       margin-bottom: 2rem;
     }
+    .section a {
+      text-decoration: none;
+      color: var(--text-color);
+    }
 
     .portfolio-item {
       background-color: var(--bg-section);
@@ -124,11 +128,12 @@ body {
       margin-bottom: 1.5rem;
     }
 
+
     .portfolio-item:hover {
       background: linear-gradient(90deg, var(--azul-tech), var(--roxo-criativo));
       transform: scale(1.02);
       transition: transform 0.3s ease;
-      color: var(--bg-hero);
+      color:  var(--text-color);
       border: none;
     }
 
