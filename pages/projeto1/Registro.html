@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pedidos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+    input, button {
+      padding: 8px;
+      margin: 4px;
+    }
+    .pedido {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+    .pedido strong {
+      display: inline-block;
+      width: 150px;
+    }
+    h2 {
+      margin-top: 30px;
+    }
+    .totais {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .btn-verde {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      margin: 4px 4px 0 0;
+      cursor: pointer;
+    }
+    .btn-verde:hover {
+      background-color: #218838;
+    }
+    .btn-vermelho {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      margin: 4px 4px 0 0;
+      cursor: pointer;
+    }
+    .btn-vermelho:hover {
+      background-color: #c82333;
+    }
+    .btn-cinza {
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      margin: 4px 4px 0 0;
+      cursor: pointer;
+    }
+    .btn-cinza:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sistema de Aprovação de Pedidos</h1>
+
+  <div>
+    <input id="cliente" placeholder="Cliente" />
+    <input id="produto" placeholder="Produto" />
+    <input id="quantidade" type="number" placeholder="Quantidade" />
+    <input id="preco" placeholder="Preço Unitário" />
+    <button onclick="adicionarPedido()">Adicionar</button>
+    <button onclick="limparTudo()" style="background:#dc3545; color:white; border:none; padding:8px 12px; cursor:pointer; margin-left:10px;">
+      Limpar Tudo
+    </button>
+  </div>
+
+  <div class="totais">
+    Total Aprovado: R$ <span id="totalAprovado">0.00</span><br>
+    Total Rejeitado: R$ <span id="totalRejeitado">0.00</span>
+  </div>
+
+  <h2>Em Análise</h2>
+  <div id="em_analise"></div>
+
+  <h2>Processar Manualmente</h2>
+  <div id="processar"></div>
+
+  <h2>Aprovados</h2>
+  <div id="aprovado"></div>
+
+  <h2>Rejeitados</h2>
+  <div id="rejeitado"></div>
+
+  <script>
+    const estados = ['em_analise', 'processar', 'aprovado', 'rejeitado'];
+    let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+
+    function salvarPedidos() {
+      localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    }
+
+    function calcularTotais() {
+      const totalAprovado = pedidos
+        .filter(p => p.status === 'aprovado')
+        .reduce((soma, p) => soma + p.quantidade * p.preco, 0);
+
+      const totalRejeitado = pedidos
+        .filter(p => p.status === 'rejeitado')
+        .reduce((soma, p) => soma + p.quantidade * p.preco, 0);
+
+      document.getElementById('totalAprovado').textContent = totalAprovado.toFixed(2);
+      document.getElementById('totalRejeitado').textContent = totalRejeitado.toFixed(2);
+    }
+
+    function renderizarPedidos() {
+      estados.forEach(estado => {
+        document.getElementById(estado).innerHTML = '';
+      });
+
+      pedidos.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'pedido';
+        const total = (p.quantidade * p.preco).toFixed(2);
+        div.innerHTML = `
+          <div><strong>Cliente:</strong> ${p.cliente}</div>
+          <div><strong>Produto:</strong> ${p.produto}</div>
+          <div><strong>Quantidade:</strong> ${p.quantidade}</div>
+          <div><strong>Preço Unitário:</strong> R$ ${p.preco.toFixed(2)}</div>
+          <div><strong>Total do Pedido:</strong> R$ ${total}</div>
+        `;
+
+        if (p.status === 'em_analise' || p.status === 'processar') {
+          const aprovar = document.createElement('button');
+          aprovar.textContent = 'Aprovar';
+          aprovar.className = 'btn-verde';
+          aprovar.onclick = () => mudarStatus(p.id, 'aprovado');
+
+          const rejeitar = document.createElement('button');
+          rejeitar.textContent = 'Rejeitar';
+          rejeitar.className = 'btn-vermelho';
+          rejeitar.onclick = () => mudarStatus(p.id, 'rejeitado');
+
+          div.appendChild(aprovar);
+          div.appendChild(rejeitar);
+
+          if (p.status === 'em_analise') {
+            const processar = document.createElement('button');
+            processar.textContent = 'Processar Manualmente';
+            processar.className = 'btn-cinza';
+            processar.onclick = () => mudarStatus(p.id, 'processar');
+            div.appendChild(processar);
+          }
+        }
+
+        document.getElementById(p.status).appendChild(div);
+      });
+
+      calcularTotais();
+    }
+
+    function adicionarPedido() {
+      const cliente = document.getElementById('cliente').value.trim();
+      const produto = document.getElementById('produto').value.trim();
+      const quantidade = parseInt(document.getElementById('quantidade').value);
+      const preco = parseFloat(document.getElementById('preco').value);
+
+      if (!cliente || !produto || isNaN(quantidade) || isNaN(preco)) return;
+
+      const novo = {
+        id: Date.now(),
+        cliente, produto, quantidade, preco,
+        status: 'em_analise'
+      };
+
+      pedidos.unshift(novo);
+      salvarPedidos();
+      renderizarPedidos();
+
+      document.getElementById('cliente').value = '';
+      document.getElementById('produto').value = '';
+      document.getElementById('quantidade').value = '';
+      document.getElementById('preco').value = '';
+    }
+
+    function mudarStatus(id, novoStatus) {
+      pedidos = pedidos.map(p => p.id === id ? { ...p, status: novoStatus } : p);
+      salvarPedidos();
+      renderizarPedidos();
+    }
+
+    function limparTudo() {
+      if (confirm("Tem certeza que quer limpar todos os pedidos?")) {
+        pedidos = [];
+        localStorage.removeItem('pedidos');
+        renderizarPedidos();
+      }
+    }
+
+    renderizarPedidos();
+  </script>
+</body>
+</html>

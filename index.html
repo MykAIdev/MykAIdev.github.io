@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MykAI - Portfólio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="dark-mode">
+
+  <header>
+    <button id="toggle-dark" style="background:none; border:none; color:white; cursor:pointer;">
+  ☀️ Modo Claro
+</button>
+    <div>
+      <h1>MykAI</h1>
+    </div>
+    <nav>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+      <div id="contrucao">
+            <p>⚠️<strong>Aviso:</strong> Este site está em construção.</p>
+    </div>
+
+  <section class="hero">
+  <div class="hero-text">
+    <h2>Olá! Eu sou a MykAI <img src="img\icon3-me.png" alt="Avatar MykAI" /></h2>
+    
+    <p>Especialista em RPA (Python, Blue Prism, Power Automate), Process Mining e Agentes de IA</p>
+    <a href="#contato" class="btn">Fale comigo</a>
+  </div>
+</section>
+
+  <section id="portfolio" class="section">
+    <h3 class="section-title">🌟 Projetos em Destaque</h3>
+    
+    <a href="pages/projeto1/Pedidos.html">
+    <div class="portfolio-item">
+
+        <h4>Processamento de Pedidos com Validação e Integração</h4>
+        <p>Automação desenvolvida com Python, Blue Prism e Power Automate para processar pedidos recebidos por e-mail com anexos (PDF/Excel). O fluxo extrai e valida os dados (cliente, itens, valores), compara com listas de produtos/clientes, registra pedidos aprovados em planilha central e envia respostas automáticas.</p>
+    
+    </div>
+    </a>
+    
+    <div class="portfolio-item">
+      <h4>Em Breve</h4>
+      <p>Em Breve</p>
+    </div>
+  </section>
+
+<section id="contato" class="contato">
+  <h3 class="section-title">📱 Me encontre nas redes</h3>
+  <div class="redes-sociais">
+    <a href="https://www.instagram.com/mykai.py?igsh=bzk5Z2Zod2dlZndv" target="_blank" title="Instagram">
+      <img src="img/instagram.svg" alt="Instagram" />
+    </a>
+    <a href="https://www.linkedin.com/in/milainy-karen-b69265163/" target="_blank" title="LinkedIn">
+      <img src="img/linkedin.svg" alt="LinkedIn" />
+    </a>
+    <a href="mailto:mykai.py@gmail.com" title="Email">
+      <img src="img/email.svg" alt="Email" />
+    </a>
+  </div>
+</section>
+
+
+  <footer>
+    © 2025 MykAI — Criado com 💜 e IA
+  </footer>
+
+<script>
+  const toggleBtn = document.getElementById('toggle-dark');
+  const body = document.body;
+
+  // Se o usuário tiver salvo "light", remove dark-mode
+  if (localStorage.getItem('theme') === 'light') {
+    body.classList.remove('dark-mode');
+    toggleBtn.textContent = '🌙 Modo Escuro';
+  } else {
+    body.classList.add('dark-mode');
+    toggleBtn.textContent = '☀️ Modo Claro';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isDark = body.classList.toggle('dark-mode');
+    toggleBtn.textContent = isDark ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>
+
+
+</body>
+</html>
