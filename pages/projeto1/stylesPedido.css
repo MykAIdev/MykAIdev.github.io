@@ -288,49 +288,116 @@ footer {
     font-size: 0.95rem;
   }
 }
-.fluxo-container {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin: 40px 0;
-  flex-wrap: wrap;
-}
 
-.fluxo-texto {
-  flex: 1 1 500px;
-}
-
-.fluxo-img {
-  flex: 1 1 400px;
-  text-align: center;
-}
-
-.fluxo-img img {
+/* Container principal com limite de largura */
+.container {
   width: 100%;
-  max-width: 550px;
-  border-radius: 16px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
+
+/* Centralizar e ajustar vídeos/mídia */
 .media {
   width: 100%;
-  margin: 2rem auto;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 10px;
+  overflow: hidden;
 }
 
 .media iframe {
   width: 100%;
-  max-width: 900px;
+  max-width: 800px;
+  height: auto;
   aspect-ratio: 16 / 9;
+  border-radius: 8px;
   display: block;
-  margin: 0 auto;
 }
 
-.portfolio-item .media {
+/* Seção */
+.section {
   width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.fluxo-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.fluxo-texto {
+  flex: 1;
+  min-width: 300px;
+  box-sizing: border-box;
+}
+
+.fluxo-img {
+  flex: 1;
+  min-width: 300px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.fluxo-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsivo para tablets e celulares */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .media {
+    padding: 0 5px;
+  }
+
+  .media iframe {
+    max-width: 100%;
+    height: 300px;
+  }
+
+  .fluxo-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .fluxo-texto,
+  .fluxo-img {
+    min-width: unset;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .media iframe {
+    height: 200px;
+  }
+
+  .fluxo-container {
+    gap: 10px;
+  }
+}
+
+/* Remover scroll horizontal da página */
+html, body {
   max-width: 100%;
-}
-
-.portfolio-item iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  display: block;
+  overflow-x: hidden;
 }
