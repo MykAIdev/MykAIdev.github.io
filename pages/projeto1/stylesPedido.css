@@ -63,7 +63,7 @@ nav a:hover {
   align-items: center;
   padding: 4rem 2rem;
   background: linear-gradient(90deg, var(--azul-tech), var(--roxo-criativo));
-  color: var(--text-color);
+  color: white;
   gap: 2rem;
 }
 
@@ -205,6 +205,10 @@ footer {
   margin: auto;
   padding: 40px 24px;
   font-family: "Inter", "Segoe UI", sans-serif;
+  color: var(--preto-grafite);
+}
+
+body.dark-mode .tecnologia-rpa {
   color: #F9F9F9;
 }
 
@@ -213,6 +217,10 @@ footer {
   line-height: 1.7;
   font-size: 1.05rem;
   margin-bottom: 18px;
+  color: var(--preto-grafite);
+}
+
+body.dark-mode .tecnologia-rpa p {
   color: #F9F9F9;
 }
 
@@ -239,6 +247,11 @@ footer {
   margin-bottom: 10px;
   line-height: 1.6;
   position: relative;
+  color: var(--preto-grafite);
+}
+
+body.dark-mode .tecnologia-rpa li {
+  color: #F9F9F9;
 }
 
 /* Bullet custom MykAI */
@@ -340,6 +353,11 @@ footer {
   flex: 1;
   min-width: 300px;
   box-sizing: border-box;
+  color: var(--preto-grafite);
+}
+
+body.dark-mode .fluxo-texto {
+  color: #F9F9F9;
 }
 
 .fluxo-img {
