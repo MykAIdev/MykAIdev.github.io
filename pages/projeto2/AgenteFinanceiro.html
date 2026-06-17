@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeto: Agente Financeiro Inteligente</title>
+  <link rel="stylesheet" href="stylesAgente.css" />
+</head>
+<body class="dark-mode">
+
+  <header>
+    <button id="toggle-dark" style="background:none; border:none; color:white; cursor:pointer;">
+      ☀️ Modo Claro
+    </button>
+    <div>
+      <h1>MykAI</h1>
+    </div>
+    <nav>
+      <a href="../../index.html">Portfólio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <div id="contrucao">
+    <p>⚠️<strong>Aviso:</strong> Este site está em construção.</p>
+  </div>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Agente Financeiro Inteligente</h1>
+      <p>Sistema de gerenciamento financeiro pessoal com IA, integrado ao Google Sheets.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- Visão Geral -->
+    <section class="section">
+      <h2>🎯 Visão Geral</h2>
+      <p>O Agente Financeiro é um assistente inteligente que utiliza <strong>Azure OpenAI GPT-4o</strong> para gerenciar suas finanças pessoais de forma automatizada e inteligente.</p>
+      <ul class="feature-list">
+        <li>✅ <strong>Registrar transações</strong> automaticamente (despesas e rendas)</li>
+        <li>✅ <strong>Extrair transações de PDFs e imagens</strong> (extratos bancários, prints)</li>
+        <li>✅ <strong>Classificar gastos</strong> em categorias predefinidas</li>
+        <li>✅ <strong>Analisar padrões</strong> de consumo</li>
+        <li>✅ <strong>Fazer previsões</strong> financeiras baseadas no histórico</li>
+        <li>✅ <strong>Dar conselhos</strong> personalizados de economia</li>
+        <li>✅ <strong>Sincronizar</strong> com Google Sheets em tempo real</li>
+      </ul>
+    </section>
+
+    <!-- Screenshots da Interface -->
+    <section class="section">
+      <h2>🖥️ Interface do Sistema</h2>
+      <p>A interface web foi desenvolvida com <strong>Streamlit</strong> e oferece múltiplas funcionalidades em abas dedicadas.</p>
+
+      <div class="screenshots-grid">
+        <div class="screenshot-card">
+          <img src="../../img/Agente Financeiro/Home.png" alt="Tela inicial - Home" loading="lazy" />
+          <div class="screenshot-caption">
+            <h4>🏠 Home</h4>
+            <p>Resumo rápido das suas finanças com saldo atual e últimas transações.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-card">
+          <img src="../../img/Agente Financeiro/Chat.png" alt="Tela de Chat com IA" loading="lazy" />
+          <div class="screenshot-caption">
+            <h4>💬 Chat com IA</h4>
+            <p>Converse em linguagem natural para registrar transações e obter análises.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-card">
+          <img src="../../img/Agente Financeiro/adicionar transaçao.png" alt="Tela de adicionar transação" loading="lazy" />
+          <div class="screenshot-caption">
+            <h4>➕ Nova Transação</h4>
+            <p>Formulário intuitivo para adicionar despesas e rendas manualmente.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-card">
+          <img src="../../img/Agente Financeiro/Histórico.png" alt="Tela de histórico de transações" loading="lazy" />
+          <div class="screenshot-caption">
+            <h4>📋 Histórico</h4>
+            <p>Lista completa de transações com filtros por período e categoria.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-card screenshot-card--wide">
+          <img src="../../img/Agente Financeiro/Painel Admin & Logs do Sistema.png" alt="Painel Admin e Logs do Sistema" loading="lazy" />
+          <div class="screenshot-caption">
+            <h4>🛠️ Painel Admin & Logs</h4>
+            <p>Monitoramento completo do sistema com logs detalhados de todas as operações.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Arquitetura -->
+    <section class="section">
+      <h2>🏗️ Arquitetura Multi-Agentes</h2>
+      <p>O sistema utiliza uma arquitetura de <strong>multi-agentes orquestrados</strong>, onde cada agente tem uma responsabilidade específica:</p>
+
+      <div class="agents-grid">
+        <div class="agent-card">
+          <div class="agent-icon">🎯</div>
+          <h4>Agente Orquestrador</h4>
+          <p>Classifica a entrada do usuário como <em>"dados"</em> (transações) ou <em>"assunto"</em> (consultas/conselhos) e direciona para o agente correto.</p>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-icon">📊</div>
+          <h4>Agente de Extração</h4>
+          <p>Extrai Data, Valor, Descrição e Categoria de mensagens em linguagem natural do usuário.</p>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-icon">📄</div>
+          <h4>Agente Leitor</h4>
+          <p>Processa PDFs e imagens usando <strong>GPT-4o Vision</strong> para extrair transações de extratos bancários e comprovantes.</p>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-icon">💡</div>
+          <h4>Agente Conselheiro</h4>
+          <p>Lê os dados da planilha, analisa padrões históricos, faz previsões e sugere formas de economizar.</p>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-icon">💾</div>
+          <h4>Data Manager</h4>
+          <p>Gerencia o salvamento em múltiplos destinos (Google Sheets e SQL Server), com validação de duplicatas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Como Usar -->
+    <section class="section">
+      <h2>🎮 Como Usar</h2>
+
+      <div class="tab-bar">
+        <button class="tab-button active" onclick="showTab('registrar')">Registrar Transações</button>
+        <button class="tab-button" onclick="showTab('perguntar')">Fazer Perguntas</button>
+        <button class="tab-button" onclick="showTab('arquivos')">Extrair de Arquivos</button>
+      </div>
+
+      <div id="registrar" class="tab-content active">
+        <h3>Registrar Transações por Texto</h3>
+        <p>Basta digitar no chat em linguagem natural:</p>
+        <div class="code-block">
+          <code>"Gastei R$200 no mercado ontem"</code><br/>
+          <code>"Recebi R$3500 de salário dia 05"</code><br/>
+          <code>"Paguei R$150 de luz e R$80 de internet"</code><br/>
+          <code>"Comprei um presente de R$100 para minha mãe"</code>
+        </div>
+        <p>A IA extrai automaticamente a data, o valor, a descrição e classifica a categoria.</p>
+      </div>
+
+      <div id="perguntar" class="tab-content">
+        <h3>Consultar e Analisar Finanças</h3>
+        <p>Faça perguntas em linguagem natural:</p>
+        <div class="code-block">
+          <code>"Qual minha situação financeira?"</code><br/>
+          <code>"Quais são meus gastos fixos?"</code><br/>
+          <code>"Quanto vou gastar no próximo mês?"</code><br/>
+          <code>"Onde posso economizar?"</code><br/>
+          <code>"Quero juntar R$5000, como faço?"</code><br/>
+          <code>"Compare meus gastos dos últimos 3 meses"</code>
+        </div>
+      </div>
+
+      <div id="arquivos" class="tab-content">
+        <h3>Extrair Transações de Arquivos</h3>
+        <p>Faça upload de extratos e comprovantes e a IA extrai todas as transações automaticamente:</p>
+        <ul class="feature-list">
+          <li>📄 <strong>PDF</strong> — Extratos bancários, faturas, comprovantes</li>
+          <li>🖼️ <strong>Imagens</strong> — PNG, JPG, JPEG, GIF, WEBP (prints de extratos)</li>
+        </ul>
+        <p>O sistema detecta e ignora automaticamente duplicatas.</p>
+      </div>
+    </section>
+
+    <!-- Tecnologias -->
+    <section class="section">
+      <h2>🛠️ Tecnologias Utilizadas</h2>
+      <div class="tech-grid">
+        <div class="tech-badge">Azure OpenAI GPT-4o</div>
+        <div class="tech-badge">Python 3.10+</div>
+        <div class="tech-badge">Streamlit</div>
+        <div class="tech-badge">Google Sheets API</div>
+        <div class="tech-badge">gspread</div>
+        <div class="tech-badge">pdfplumber</div>
+        <div class="tech-badge">Pillow</div>
+        <div class="tech-badge">python-dotenv</div>
+        <div class="tech-badge">pandas</div>
+        <div class="tech-badge">SQL Server</div>
+      </div>
+    </section>
+
+    <!-- Categorias -->
+    <section class="section">
+      <h2>🏷️ Categorias Suportadas</h2>
+      <div class="categories-grid">
+        <div class="category-group">
+          <h3>💸 Despesas</h3>
+          <ul class="category-list">
+            <li><strong>Alimentação</strong> — Mercado, restaurante, iFood, delivery</li>
+            <li><strong>Transporte</strong> — Uber, gasolina, estacionamento, ônibus</li>
+            <li><strong>Saúde</strong> — Farmácia, médico, plano de saúde</li>
+            <li><strong>Moradia</strong> — Aluguel, condomínio, manutenção</li>
+            <li><strong>Utilidades</strong> — Luz, água, gás, internet, telefone</li>
+            <li><strong>Pessoal</strong> — Roupa, academia, streaming</li>
+            <li><strong>Viagens</strong> — Passagem, hotel, turismo</li>
+            <li><strong>Presentes</strong> — Aniversário, natal</li>
+            <li><strong>Animais</strong> — Ração, veterinário, pet shop</li>
+            <li><strong>Débito</strong> — Parcela, empréstimo, financiamento</li>
+          </ul>
+        </div>
+        <div class="category-group">
+          <h3>💰 Rendas</h3>
+          <ul class="category-list">
+            <li><strong>Pagamento</strong> — Salário, freelance, serviço prestado</li>
+            <li><strong>Bônus</strong> — 13º, PLR, comissão, gratificação</li>
+            <li><strong>Juros</strong> — Rendimento de investimento, dividendos</li>
+            <li><strong>Poupança</strong> — Rendimento poupança, resgate</li>
+            <li><strong>Outros</strong> — Não classificados</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estrutura do Projeto -->
+    <section class="section">
+      <h2>📁 Estrutura do Projeto</h2>
+      <div class="code-block code-block--tree">
+        <pre>
+Agente Financeiro/
+├── src/
+│   ├── app.py                      <span class="comment"># Interface web Streamlit</span>
+│   ├── Main.py                     <span class="comment"># Fluxo principal</span>
+│   ├── agente_orquestrador.py      <span class="comment"># Classifica mensagens</span>
+│   ├── agente_extracao.py          <span class="comment"># Extrai dados financeiros</span>
+│   ├── agente_leitor.py            <span class="comment"># Extrai de PDFs e imagens</span>
+│   ├── agente_conselheiro.py       <span class="comment"># Análise e conselhos</span>
+│   ├── data_manager.py             <span class="comment"># Gerenciador central de dados</span>
+│   ├── google_sheets_connector.py  <span class="comment"># Integração Google Sheets</span>
+│   ├── sql_server_connector.py     <span class="comment"># Integração SQL Server</span>
+│   ├── utils.py                    <span class="comment"># Funções utilitárias</span>
+│   └── config.py                   <span class="comment"># Variáveis de ambiente</span>
+├── requirements.txt
+└── README.md</pre>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <section id="contato" class="contato">
+    <h3 class="section-title">📱 Me encontre nas redes</h3>
+    <div class="redes-sociais">
+      <a href="https://www.instagram.com/mykai.py?igsh=bzk5Z2Zod2dlZndv" target="_blank" rel="noopener noreferrer" title="Instagram">
+        <img src="../../img/instagram.svg" alt="Instagram" />
+      </a>
+      <a href="https://www.linkedin.com/in/milainy-karen-b69265163/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <img src="../../img/linkedin.svg" alt="LinkedIn" />
+      </a>
+      <a href="mailto:mykai.py@gmail.com" title="Email">
+        <img src="../../img/email.svg" alt="Email" />
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 MykAI — Criado com 💜 e IA
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const toggleBtn = document.getElementById('toggle-dark');
+    const body = document.body;
+
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = '🌙 Modo Escuro';
+    } else {
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = '☀️ Modo Claro';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark-mode');
+      toggleBtn.textContent = isDark ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Tabs
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
